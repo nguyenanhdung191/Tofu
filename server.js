@@ -17,12 +17,7 @@ const Controller = require("./src/Controller/Controller");
 //////////////////////////////Declare config file
 const config = require("./src/Common/Config");
 //////////////////////////////Import and use SQL driver for NODEJS
-
-<<<<<<< HEAD
-//////////////////////////////Init/ialize web app
-=======
-//////////////////////////////Initialize web app
->>>>>>> 35d6df2049b030818e820eb1dc36cd34ae6f4b8e
+//Initialize Webapp
 const app = express();
 app.use(bodyParser.json());
 app.use(multer({storage: storage}).any());
