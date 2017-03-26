@@ -58,9 +58,9 @@ app.all('/*', function (req, res) {
 });
 
 //////////////////////////////Start server
-const server = app.listen(8080, function () {
-    var host = server.address().address;
-    var port = server.address().port;
+const server = app.listen(8081, function () {
+    let host = server.address().address;
+    let port = server.address().port;
     console.log("Server started at http://%s:%s", host, port)
 });
 

@@ -2,14 +2,15 @@ const getAllProduct = () => {
     let HTML = "";
     $("#menuList").html("");
     $.get("api/products", data => {
+        console.log(data);
         data.forEach(product => {
             HTML += `<div class="menuItem">
                         <div class="productImage"><img src="img/product/${product.productImageUrl}" alt="Chưa có hình"/></div>
                         <div class="productName">${product.productName}</div>
                         <div class="productDescription">${product.productDescription}</div>
-                        <div class="productPrice">${product.productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} VNĐ</div>
+                        <div class="productPrice">${product.productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} VNĐ / ${product.productUnit}</div>
                         <div class="productOperation">
-                            <img class="editButton" onclick="showEditProductModal('${product.productID}','${product.productName}','${product.productDescription}','${product.productPrice}','${product.productImageUrl}','${product.productTypeID}')" src="img/editicon.png"/>
+                            <img class="editButton" onclick="showEditProductModal('${product.productID}','${product.productName}','${product.productDescription}','${product.productPrice}','${product.productImageUrl}','${product.productTypeID}','${product.productUnit}')" src="img/editicon.png"/>
                         </div>
                     </div>`;
         });
@@ -31,12 +32,13 @@ const getAllProductType = () => {
         $("#inputProductTypeSelector").html(HTML);
     });
 };
-const showEditProductModal = (id, name, description, price, imageUrl, typeID) => {
+const showEditProductModal = (id, name, description, price, imageUrl, typeID, unit) => {
     var modal = document.getElementById('addMenuItem');
     modal.style.display = "block";
     $("#inputProductName").val(name);
     $("#inputProductDescription").val(description);
     $("#inputProductPrice").val(price);
+    $("#inputProductUnit").val(unit);
     $("#inputProductTypeSelector").val(typeID);
     $("#inputProductID").text(id);
     $("#inputProductImage").val("");
@@ -193,6 +195,7 @@ const clear = () => {
     $("#inputProductDescription").val("");
     $("#inputProductPrice").val("");
     $("#inputProductImage").val("");
+    $("#inputProductUnit").val("");
 };
 
 getAllProduct();
